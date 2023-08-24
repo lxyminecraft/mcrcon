@@ -1,0 +1,68 @@
+.\" Process this file with
+.\" groff -man -Tascii mcrcon.1
+.\"
+.TH MCRCON 1 "August 2023" "V0.7.2-汉化版"
+.SH 汉化
+2023 XiaoMC Project. 保留原作者所有权利。XiaoMC的QQ是2032477260
+.SH 程序名称
+mcrcon \- 发送Rcon指令到一个Minecraft服务器
+.SH 概要
+.B mcrcon [
+选项
+.B ] [
+命令
+.B ]
+.SH 描述
+mcrcon 是 Minecraft Rcon 客户端，用于远程管理和维护服务器的脚本。
+.SH 选项
+.IP -H
+服务器地址 (默认: localhost)
+.IP -P
+端口 (默认: 25575)
+.IP -p
+Rcon 控制密码
+.IP -t
+终端模式
+.IP -s
+安静模式
+.IP -c
+禁用颜色输出
+.IP -r
+输出原始数据包
+.IP -w
+在每个命令之间等待指定的持续时间（单位：秒） (范围：1 - 600)
+.IP -h
+打印用法
+.IP -v
+输出版本信息
+.PP
+带空格的命令必须用引号将命令括起来
+.br
+如果没有指定命令，mcrcon将以终端模式启动
+.SH 环境变量
+服务器地址, 端口 和 控制密码 可以使用以下环境变量进行设置:
+.PP
+\fBMCRCON_HOST（服务器地址）
+.br
+\fBMCRCON_PORT（服务器端口）
+.br
+\fBMCRCON_PASS（控制密码）\fR
+.PP
+注意：命令行选项 将覆盖环境变量
+.SH 示例
+在终端模式使用默认端口，创建Rcon连接
+.RS
+\fBmcrcon\fR -H my.minecraft.server -p password
+.RE
+.PP
+发送 "weather clear" 指令到服务器，使用自定义端口1337
+.RS
+\fBmcrcon\fR -H my.minecraft.server -P 1337 -p password "weather clear"
+.RE
+.PP
+发送3个指令 ("say", "save-all", "stop") 并且在每个命令之间间隔5秒后再运行
+.RS
+\fBmcrcon\fR -H my.minecraft.server -p password -w 5 "say Server is restarting!" save-all stop
+.RE
+.SH BUGS
+报告Bugs 于 \fBtiiffi+mcrcon 在 gmail\fR 或者 \fBhttps://github.com/Tiiffi/mcrcon/issues/\fR
